@@ -32,14 +32,16 @@ router.post("/",(req, res) => {
   });
    */
   // Single listing
- /*  router.get("/", async (req, res) => { 
+  router.get("/name", async (req, res) => { 
+    
     try {
       const listing = await Project.find({Employee_Name:req.query.Name});
-      res.json(listing);
+       res.json(listing);
     } catch (error) {
+      
       res.json({ message: error });
-    }
-  }); */
+    } 
+  }); 
 
   router.get("/", async (req, res) => { console.log("get projects");
     try {

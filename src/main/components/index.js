@@ -1,13 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link , NavLink } from "react-router-dom";
 import "./Table.css";
 const  Table = ({
   data = null,
   columns = null,
   hover = true,
   striped = true,
-getval,  api , Edit
+getval,  api , Edit 
   
 }) => {
   const getCaps = ( head, field   ) => {
@@ -25,7 +25,7 @@ getval,  api , Edit
  getval();
   }
 
- 
+
 
   return (
     <div>
@@ -46,10 +46,16 @@ getval,  api , Edit
                   <td>{row[col.field]}</td>
                   </>
                 ))}{/* <Link to={`/Project/${row.Employee_Name}`} onClick={()=>{getpro(row.Employee_Name)}} >project</Link> */}
-                <button style={{border:"none"}} onClick={(e)=>{del(e, row._id , row.Employee_Name) } } ><i className="fa fa-trash fa-2x text-danger"></i></button>
-                {Edit === "Employee"?   <Link to={`/Employee/${row._id}/edit`}  ><i className="fa fa-edit fa-2x text-info" ></i></Link>  : ""}
+               
+                {Edit === "Employee"?  <> 
+              <NavLink className="p-4" to={`/Project/name/${row.Employee_Name}/edit`} >Projects</NavLink> 
+                
+                
+                <NavLink className="p-5" to={`/Employee/${row._id}/edit`}  ><i className="fa fa-edit fa-2x text-info" ></i></NavLink> 
+                                 </> : "" }
+
                  {Edit === "Project" ?   <Link to={`/Project/${row._id}/edit`}  ><i className="fa fa-edit fa-2x text-info"></i></Link> : ""}
-                   
+                 <button style={{border:"none"}} onClick={(e)=>{del(e, row._id , row.Employee_Name) } } ><i className="fa fa-trash fa-2x text-primary"></i></button> 
                    
               </tr>
             ))}

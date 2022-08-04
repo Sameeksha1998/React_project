@@ -21,7 +21,7 @@ function Employee() {
  } 
 
  // useeffect
-useEffect(() => { console.log(show,"oooooo");
+useEffect(() => {
     getValue();   
  /*  getProject(Name); */ 
 }, [])
@@ -29,7 +29,7 @@ useEffect(() => { console.log(show,"oooooo");
 
 
 //specific user project
-function getProject(Name){  
+/* function getProject(Name){  
   fetch(`http://localhost:4000/api/project/?Name=${Name}`).then((data)=>{
     data.json().then((pro)=>{
     setProject(pro) 
@@ -44,7 +44,7 @@ function getProject(Name){
     })
   })
   
-}
+} */
 
 //delete employee
 
@@ -59,14 +59,14 @@ getValue();
 
 const columns = [
   { field: "Employee_Id", header: "Employee Id" },
-  { field: "Employee_Name", header: "Employee Name" },
-  { field: "Employee_Email", header: "Employee Email" },
-  { field: "Employee_No", header: "Employee No" },
-  
+  { field: "Employee_Name", header: "Employee" },
+  { field: "Employee_Email", header: "Email" },
+  { field: "Employee_No", header: "Mobile No" },
+ 
 ];
 
   return (
-   <>  <Table  Edit="Employee"  api={api} getpro={getProject} getval={getValue}  data={pro} columns={columns} hover={true} striped={true} />
+   <>  <Table  Edit="Employee"  api={api}  getval={getValue}  data={pro} columns={columns} hover={true} striped={true} />
       
 {/* <table  className='table table.hover' > <thead class="thead-light">
 <tr className='bg-light '>

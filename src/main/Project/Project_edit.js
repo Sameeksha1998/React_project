@@ -11,12 +11,12 @@ function Project_edit() {
   const {id } = useParams()
 
 
-  const [Name ,setName] = useState("");
+  const [Employee_Name ,setName] = useState("");
   const [Project , setProject] = useState("");
   const [Technology , setTechnology] = useState("");
   const [Start_date , setStart_date] = useState();
 
-  const data = {Name,Project,Technology,Start_date}
+  const data = {Employee_Name,Project,Technology,Start_date}
   const nav = useNavigate();
 function submit(){
   fetch(`http://localhost:4000/api/Project/${id}`,{
@@ -50,7 +50,7 @@ function submit(){
    <>
     <div className='container p-5'>
         <form className='form-group ' >
-           <div>Employee_Name</div><input  defaultValue={Name} className='form-control m-2 ' type="text" onChange={(e)=>{setName(e.target.value)}} ></input>
+           <div>Employee_Name</div><input  defaultValue={Employee_Name} className='form-control m-2 ' type="text" onChange={(e)=>{setName(e.target.value)}} ></input>
             <div>Project</div><input defaultValue={Project}  className='form-control m-2' type="text" onChange={(e)=>{setProject(e.target.value)}} ></input>
             <div>Technology</div><input defaultValue={Technology}  className='form-control m-2' type="text" onChange={(e)=>{setTechnology(e.target.value)}} ></input>
             <div>Start_date</div><input defaultValue={Start_date}  className='form-control m-2' type="text" onChange={(e)=>{setStart_date(e.target.value)}} ></input>
