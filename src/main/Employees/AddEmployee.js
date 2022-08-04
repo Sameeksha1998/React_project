@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 
 
-function ProductCreate() {
+function AddEmployee() {
 
   const [Employee_Name ,setName] = useState("");
   const [Employee_Id , setId] = useState("");
@@ -22,7 +22,7 @@ function submit(){
     body: JSON.stringify({ Employee_Name,Employee_Id, Employee_Email,Employee_No})
   });
       
-        nav("/product")     
+        nav("/Employee")     
 
       }
       
@@ -49,4 +49,4 @@ function submit(){
   )
 }
 
-export default ProductCreate
+export default AddEmployee

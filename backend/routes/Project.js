@@ -54,9 +54,9 @@ router.post("/",(req, res) => {
     try {
       const listing = {
         Employee_Name:req.body.Employee_Name,
-        Employee_id:req.body.Employee_id,
-        Employee_Email:req.body.Employee_Email,
-        Employee_no:req.body.Employee_no
+        Project:req.body.Project,
+        Technology:req.body.Technology,
+        Start_date:req.body.Start_date
        
       };
   

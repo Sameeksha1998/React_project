@@ -15,19 +15,19 @@ function Header() {
     <ul className="navbar-nav mr-auto">
       
     <li className="nav-item text-light p-2">
-      <NavLink className="text-light " style={{textDecoration:"none"}} to="/">Home</NavLink>
+      <NavLink className="text-light "  style={{textDecoration:"none" }}  to="/">Home</NavLink>
       </li>
 
       <li className="nav-item text-light p-2">
-      <NavLink className="text-light " style={{textDecoration:"none"}} to="/product">Show Product</NavLink>
+      <NavLink  className="text-light" style={{textDecoration:"none", }} to="/Employee/create">Add Employee</NavLink>
+      </li>
+
+      <li className="nav-item text-light p-2">
+      <NavLink className="text-light " style={{textDecoration:"none"}} to="/Employee">Show Employee</NavLink>
       </li>
       
-      <li className="nav-item text-light p-2">
-      <NavLink  className="text-light" style={{textDecoration:"none", }} to="/product/create">Add Product</NavLink>
-      </li>
-     
-      <li className="nav-item active text-light p-2">
-        <NavLink style={{textDecoration:"none"}}  className="text-light" to="/Project">Project</NavLink>
+    <li className="nav-item active text-light p-2">
+        <NavLink style={{textDecoration:"none"}}  className="text-light" to="/Project">Projects</NavLink>
       </li>
       
       <li className="nav-item active text-light p-2">

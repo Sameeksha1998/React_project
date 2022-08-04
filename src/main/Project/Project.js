@@ -1,6 +1,7 @@
 import React from 'react'
-import Table from '../components/index'
+import Table from '../components'
 import { useEffect,useState } from 'react';
+import {  NavLink } from 'react-router-dom';
 
 function Project() {
     const columns = [
@@ -11,57 +12,33 @@ function Project() {
         
       ]; 
 
-  const [show, setshow] = useState("");
-      const [pro, setPro]= useState([]);
-       const [project, setProject]= useState([]); 
+ const [pro, setPro]= useState([]);
+      
      
-     
+    const api =' http://localhost:4000/api/Project';
      // get api call
-      function getValue(){
+      function    getValue(){
        fetch("http://localhost:4000/api/Project").then((data)=>{
          data.json().then((datas)=>{
       setPro(datas)
-      
+
          })
        })
       } 
      
       // useeffect
-     useEffect(() => { console.log(show,"oooooo");
+     useEffect(() => { 
          getValue();   
       /*  getProject(Name); */ 
      }, [])
      
      
-     
-     //specific user project
-    /*  function getProject(Name){  
-       fetch(`http://localhost:4000/api/project/?Name=${Name}`).then((data)=>{
-         data.json().then((pro)=>{
-         setProject(pro) 
-         console.log("getpro",pro);
-       
-        pro.map((a)=>{setshow(a)});
-          
-           return document.getElementById("bb").innerHTML = show.Project;
-       
-       
-           
-         })
-       })
-       
-     } */
-
-
-
-
-
-
-
-
+    
   return (
     <div>
-     <Table  getval={getValue}  data={pro} columns={columns} hover={true} striped={true} /> 
+   
+     <Table Edit="Project" api={api} getval={getValue}  data={pro} columns={columns} hover={true} striped={true} /> 
+     <NavLink className="btn btn-info" to="/AddProject">Add Projects</NavLink>
     </div>
   )
 }

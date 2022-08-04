@@ -1,14 +1,15 @@
 import React, { useState, useEffect  } from 'react'
-import { Link, NavLink   } from 'react-router-dom';
-import Table from './components/index';
 
-function Product() {
+import Table from '../components/index' ;
+
+function Employee() {
 
 
  const [show, setshow] = useState("");
  const [pro, setPro]= useState([]);
   const [project, setProject]= useState([]); 
 
+  const api = 'http://localhost:4000/api/Employee';
 
 // get api call
  function getValue(){
@@ -65,7 +66,7 @@ const columns = [
 ];
 
   return (
-   <>  <Table getpro={getProject} getval={getValue}  data={pro} columns={columns} hover={true} striped={true} />
+   <>  <Table  Edit="Employee"  api={api} getpro={getProject} getval={getValue}  data={pro} columns={columns} hover={true} striped={true} />
       
 {/* <table  className='table table.hover' > <thead class="thead-light">
 <tr className='bg-light '>
@@ -105,4 +106,4 @@ const columns = [
   )
 }
 
-export default Product
+export default Employee
