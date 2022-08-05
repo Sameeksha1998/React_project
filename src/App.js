@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from './main/components/Header';
+import Header from './main/components/Header'
 import  Main from './main/Main';
 import Employee from './main/Employees/Employee';
 import EmployeeEdit from './main/Employees/EmployeeEdit';
@@ -15,7 +15,7 @@ function App() {
   return (
 
  <BrowserRouter>
-<Header />
+<Header/>
 <Routes>
 <Route index element={<Main />} />
 <Route path='/' exact element={<Main/>}  ></Route>
