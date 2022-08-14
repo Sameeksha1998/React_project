@@ -1,48 +1,72 @@
 import React, { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { empAdd } from '../../features/empSlice';
 
+function AddEmployee({Emp,setEmp}) {
 
-function AddEmployee() {
-
-  const [Employee_Name ,setName] = useState("");
-  const [Employee_Id , setId] = useState("");
-  const [Employee_Email , setEmail] = useState("");
-  const [Employee_No , setNo] = useState("");
-
+  const dispatch = useDispatch()
+  const empState = useSelector((state)=> state.empState)
   
+console.log("add", Emp);
+const [add, setadd] = useState({
+  Employee_Name:"",
+  Employee_Id:"", Employee_Email:"",Employee_No:"",Project:"", Status:""
 
-  const nav = useNavigate();
-function submit(){
-  fetch("http://localhost:4000/api/Employee",{
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ Employee_Name,Employee_Id, Employee_Email,Employee_No})
-  });
-      
-        nav("/Employee")     
+})
 
-      }
-      
-    
+const nav = useNavigate()
+const submit=(e)=>{
+  e.preventDefault();
+dispatch(empAdd(add))
+   setadd({
+    Employee_Name:"", Employee_Id:"", Employee_Email:"", Employee_No:"", Project:"", Status:""
+  })
+  if(empState.addStatus==="success"){
+  nav("/Employee")}
+  else if(empState.addStatus==="rejected"){
+    alert("form can't be empty")
+  }
+  else{
+    console.log("loading");
+  }
+}
+ 
+
+ 
+
 
   return (
     <>
         <div className='container ' >
           <h3 className='text-center text-info'>Add Products</h3>
-            <div className=''>
-            <form className='form-group m-4'  >
-               <div >Name<input className='form-control p-2' placeholder='Enter  name' type="text" value={Employee_Name} onChange={(e)=>{setName(e.target.value)}} ></input></div>
-              
-              <div>Id</div><input   className='form-control  p-3'  placeholder='Enter Id'type="text" value={Employee_Id} onChange={(e)=>{setId(e.target.value)}} ></input>
-              <div>No</div><input className='form-control  p-3'  placeholder='Enter No'type="text" value={Employee_No} onChange={(e)=>{setNo(e.target.value)}} ></input>
-              <div>Email</div><input className='form-control  p-3'  placeholder='Enter Email' type="text" value={Employee_Email} onChange={(e)=>{setEmail(e.target.value)}} ></input>
-               <div className='text-center'><button type='submit' className='btn btn-info text-center'  onClick={()=>{submit()}}   >Submit</button></div> 
+            
+            <div style={{marginLeft:"250px" , marginRight:"250px"}}>
+            <form className='form-group m-4'   onSubmit={submit}>
                
-            </form> </div>
-            </div>
+              <h4 >Name</h4>
+              <input className='form-control p-3 ' style={{border: "1px solid"}} placeholder='Enter  name' type="text" value={add.Employee_Name} 
+              onChange={(e) => setadd({ ...add, Employee_Name: e.target.value })} ></input>
+              
+              <h4>Id</h4><input  style={{border: "1px solid"}}   className='form-control  p-3'  placeholder='Enter Id'type="text" value={add.Employee_Id} onChange={(e)=>setadd({...add, Employee_Id: e.target.value})} ></input>
+              
+              <h4>No</h4><input style={{border: "1px solid"}}  className='form-control  p-3'  placeholder='Enter No'type="text" value={add.Employee_No} onChange={(e)=>setadd({...add, Employee_No: e.target.value})} ></input>
+              
+              <h4>Email</h4><input style={{border: "1px solid"}}  className='form-control  p-3'  placeholder='Enter Email' type="text" value={add.Employee_Email} onChange={(e)=>setadd({...add, Employee_Email: e.target.value})} ></input>
+              
+              <div  className='text-center text-info p-3 m-5'><h3>Project Details</h3>
+              <input style={{border: "1px solid"}}  className='form-control  p-3 m-2'  placeholder='Enter assign Project' type="text" value={add.Project} onChange={(e)=>setadd({...add, Project: e.target.value})} ></input>
+
+               <input style={{border: "1px solid"}}  className='form-control  p-3 m-2'  placeholder='Enter Status of project' type="text" value={add.Status} onChange={(e)=>setadd({...add, Status: e.target.value})} ></input>
+              </div>
+               <div className='text-center'><button type='submit' className='btn btn-info text-center'  >Submit</button></div> 
+              
+               {empState.addStatus ==="rejected"? <p className='alert alert-danger'>{empState.addError}</p> :""}
+               {empState.addStatus === "success"? <p className='alert alert-success'>Employee Added successfully</p>:""}
+               
+           
+               </form> </div>
+               </div>
 
 
     </>

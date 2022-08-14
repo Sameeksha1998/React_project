@@ -19,13 +19,13 @@ function Name() {
 
       useEffect(() => { 
         
-        fetch(`http://localhost:4000/api/Project/name/?Name=${name}`).then((e)=>{
+      //   fetch(`http://localhost:4000/api/Project/name/?Name=${name}`).then((e)=>{
            
-                e.json().then((datas)=>{
-             setdata(datas); 
-             setlength(datas.length())
-                })
-              })
+      //           e.json().then((datas)=>{
+      //        setdata(datas); 
+      //        setlength(datas.length())
+      //           })
+      //         })
              })    
 
 

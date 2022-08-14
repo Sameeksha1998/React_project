@@ -11,7 +11,7 @@ function Header() {
   </nav> */}
 
     <nav className="navbar navbar-expand-lg bg-dark">
-  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+  <div  id="navbarSupportedContent">
     <ul className="navbar-nav mr-auto">
       
     <li className="nav-item text-light p-2">
@@ -31,8 +31,13 @@ function Header() {
       </li>
       
       <li className="nav-item active text-light p-2">
+        <NavLink style={{textDecoration:"none"}}  className="text-light" to="/company">Company Projects</NavLink>
+      </li>
+
+      <li className="nav-item active text-light p-2">
         <NavLink style={{textDecoration:"none"}}  className="text-light" to="/about">About</NavLink>
       </li>
+      
       </ul>
   </div>
 </nav>
