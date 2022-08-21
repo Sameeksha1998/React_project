@@ -179,6 +179,7 @@
     "range-parser": "^1.2.1",
     "raw-body": "^2.5.1",
     "rc": "^1.2.8",
+    "react-js-pagination": "^3.0.3",
     "readable-stream": "^3.6.0",
     "readdirp": "^3.6.0",
     "registry-auth-token": "^4.2.1",

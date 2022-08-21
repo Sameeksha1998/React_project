@@ -7,13 +7,14 @@ import AddEmployee from './main/Employees/AddEmployee';
 import About from './main/components/About';
 import Footer from './main/components/Footer';
 import Project from '../src/main/Employees/Projects';
-import Project_edit from './main/Project/Project_edit';
+import Project_edit from './main/Employees/Project_edit';
 import ProjectCreate from './main/Project/ProjectCreate';
 import Company from './main/Employees/Company';
 import { useState } from 'react';
 
 
 function App() {
+  
   
   const [Emp, setEmp] = useState({
     Employee_Name: "",
@@ -37,8 +38,8 @@ function App() {
 <Route path='/Employee' exact element={< Employee setEmp={setEmp}  />}  ></Route>
 <Route path='/Employee/create' exact element={< AddEmployee Emp={Emp} setEmp={setEmp} />}  ></Route>
 <Route path='/Employee/:id/edit' exact element={< EmployeeEdit Emp={Emp} setEmp={setEmp} />}  ></Route>
-<Route path='/Project/:id/edit' exact element={<Project_edit/>}  ></Route>
-<Route path='/Project' exact element={<Project/>}  ></Route>
+<Route path='Employee/Project/:id/edit' exact element={< Project_edit Emp={Emp} setEmp={setEmp} />}  ></Route>
+<Route path='/Project' exact element={<Project setEmp={setEmp}/>}  ></Route>
 <Route path='/AddProject' exact element={<ProjectCreate/>}  ></Route>
 <Route path='/Company' exact element={<Company/>}  ></Route>
 

@@ -1,11 +1,10 @@
 import React from "react";
-import { useEffect , useState} from "react";
-import { Link , NavLink } from "react-router-dom";
+
+import { Link  } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteEmp, getEmp } from "../../features/empSlice";
-import { useNavigate } from "react-router-dom";
+import { deleteEmp } from "../../features/empSlice";
+
 import "./Table.css";
-import EmployeeEdit from "../Employees/EmployeeEdit";
 
 
 const  Table = ({
@@ -19,16 +18,21 @@ getval=null ,  Edit=null  , setEmp ,
     if (head) return head.toUpperCase();
     return field.toUpperCase();
   };
-  const nav = useNavigate();
+  
 
  const dispatch = useDispatch()
 
 const handleDelete=(_id)=>{ 
    dispatch(deleteEmp(_id));
+   
   }
-useEffect(() => {
-  dispatch(getEmp());
-}, [dispatch]);
+
+
+
+// useEffect(() => {
+
+//   dispatch(getEmp());
+// }, [dispatch ]);
 
 
 
@@ -61,9 +65,15 @@ useEffect(() => {
                
                <button   style={{border:"none"}} onClick={()=>handleDelete(row._id)}   ><i className="fa fa-trash fa-2x text-primary" ></i></button> 
                                  </> : "" }
+              
+           {Edit === "Project"?  <> 
+              
+              <Link  onClick={()=>{setEmp(row)}} to={`/Employee/Project/${row._id}/edit`} ><i className="fa fa-edit fa-2x text-info" ></i></Link> 
+              
+              <button   style={{border:"none"}} onClick={()=>handleDelete(row._id)}   ><i className="fa fa-trash fa-2x text-primary" ></i></button> 
+                                </> : "" }                   
 
-                 
-                 
+
          
                 
       
@@ -72,7 +82,7 @@ useEffect(() => {
             ))}
         </tbody>
       </table> 
-    
+
       
     </div>
   );

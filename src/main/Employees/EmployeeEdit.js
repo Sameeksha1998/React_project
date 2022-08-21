@@ -1,7 +1,7 @@
 
 import React,{useState , useEffect} from 'react'
 import { useParams , useNavigate} from 'react-router-dom';
-import { empAdd, updateEmp } from '../../features/empSlice';
+import { empAdd, updateEmp  , getEmp } from '../../features/empSlice';
 import{useDispatch, useSelector} from "react-redux";
 
 
@@ -12,9 +12,11 @@ let nav = useNavigate();
  const empState = useSelector((state) => state.empState);
  const {employee} = empState ;
  
+ console.log(Emp);
  const handleSubmit = (e) => {
    e.preventDefault();
-   dispatch(updateEmp(Emp));
+  
+   dispatch(updateEmp(Emp)  );
 
  
    setEmp({
@@ -24,12 +26,11 @@ let nav = useNavigate();
       Employee_Email:"",
       Project:"",
       Status:""
-    });
+    }); 
+     nav("/Employee")
    }
    
-       useEffect(() => {
-  
-     },[]) 
+        
 
   return (
    <>
@@ -48,7 +49,7 @@ let nav = useNavigate();
             <div className='text-info p-2'>Employee_No</div>
             <input value={Emp.Employee_No} style={{border: "1px solid"}}  className='form-control m-2' type="text" onChange={(e)=>setEmp({...Emp, Employee_No:e.target.value})} ></input>
 
-            <div className='text-center text-info p-3 m-5'>
+            <div className='text-center text-info p-2 m-4'>
             <h3 className='text-info'>Project Details</h3>
             <input value={Emp.Project} style={{border: "1px solid"}}  className='form-control m-2' type="text" onChange={(e)=>setEmp({...Emp, Project:e.target.value})} ></input>
 

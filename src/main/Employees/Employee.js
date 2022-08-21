@@ -3,16 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteEmp, getEmp } from '../../features/empSlice';
 import Table from '../components/index' ;
 
+
 function Employee({setEmp}) {
 const dispatch = useDispatch();
-
 const empState = useSelector((state) => state.empState);
 const {employee}=empState;
 
 
-  useEffect(() => {
-    dispatch(getEmp());
-  }, [dispatch]);
+  useEffect(() => { 
+  if(!employee.length){
+dispatch(getEmp());}
+   }, []);
 
   
 const columns = [

@@ -7,8 +7,9 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import empReducer from './features/empSlice';
 import postReducer from './features/postSlice';
-const store = configureStore({
-reducer:{
+export const store = configureStore({
+
+  reducer:{
   empState : empReducer,
   postState : postReducer
 }

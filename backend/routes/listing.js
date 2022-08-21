@@ -43,16 +43,46 @@ router.post("/", async (req, res) => {
       res.json({ message: error });
     }
   } ) 
+  
 
   
   // Single listing
-  router.get("/:listingId", async (req, res) => {
-    try {
-      const listing = await Employee.findById(req.params.listingId);
-      res.json(listing);
-    } catch (error) {
-      res.json({ message: error });
+  router.get("/page", async (req, res) => {
+    try { 
+      
+      const pageNumber = parseInt(req.query.pageNumber) || 0;
+    const limit = parseInt(req.query.limit) || 12;
+    const result = {};
+   
+    const totalPosts = await Employee.countDocuments().exec();
+    
+    let startIndex = pageNumber * limit;
+    const endIndex = (pageNumber + 1) * limit;
+    result.totalPosts = totalPosts;
+    if (startIndex > 0) {
+      result.previous = {
+        pageNumber: pageNumber - 1,
+        limit: limit,
+      };
     }
+    if (endIndex < (await Employee.countDocuments().exec())) {
+      result.next = {
+        pageNumber: pageNumber + 1,
+        limit: limit,
+      };
+    }
+    result.data = await Employee.find()
+      .sort("-_id")
+      .skip(startIndex)
+      .limit(limit)
+      .exec();
+    result.rowsPerPage = limit;
+   
+    return res.json({ msg: "Posts Fetched successfully", data: result });
+    } catch (error) {
+      res.json({ message: "error" });
+    }
+    
   });
 
 
@@ -98,6 +128,19 @@ router.post("/", async (req, res) => {
     res.send(deleted);
   });
   
+  
+  router.delete("/:id", async (req, res) => {
+
+    const emp = await Employee.findById(req.params.id);
+  
+    if (!emp) return res.status(404).send("Employee not found...");
+  
+    const deleted = await Employee.findByIdAndDelete(req.params.id);
+  
+    res.send(deleted);
+  });
+
+
 
 
 
